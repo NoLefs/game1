@@ -11,7 +11,7 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="Most Epic RPG Adventure Ever" startnode="1" creator="Twine" creator-version="2.3.9" ifid="07A95C1A-2927-463F-8894-2105989F3189" zoom="1" format="Harlowe" format-version="3.1.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Start" tags="Story1" position="597,232" size="100,100">(set: $name to (prompt: &quot;Your name?&quot;, &quot;&quot;))
+<tw-storydata name="Most Epic RPG Adventure Ever" startnode="1" creator="Twine" creator-version="2.3.9" ifid="07A95C1A-2927-463F-8894-2105989F3189" zoom="1" format="Harlowe" format-version="3.1.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Start" tags="Story1" position="599,232" size="100,100">(set: $name to (prompt: &quot;Your name?&quot;, &quot;&quot;))
 (set: $password to (prompt: &quot;Your password?&quot;, &quot;&quot;))
 Standard play without any beta/alpha accesses
 [[Enter|Menu2]]
@@ -23,23 +23,28 @@ Let&#39;s see, are you a Alpha Tester?
 [[We shall|Menu]]
 
 
-Alpha Build v.12
+Alpha Build v.13
 
+
+
+(set: $code to (random: 1000,9999))
 
 (set: $progress to &quot;0&quot;)
 (set: $retard to &quot;1&quot;)
 (set: $alpha to &quot;AlphaTester420&quot;)
 (set: $beta to &quot;BetaTester69&quot;)
-(set: $eggs to &quot;Not Found&quot;)
-(set: $eggs1 to &quot;Not Found&quot;)
-(set: $maxhp to &quot;6&quot;)
-(set: $hp to &quot;3&quot;)
-(set: $spelldmg to &quot;1&quot;)
-(set: $spelldmg2 to &quot;3&quot;)
-(set: $dmg to &quot;1&quot;)
-(set: $dmg2 to &quot;3&quot;)
-(set: $def to &quot;0&quot;)
-(set: $mp to &quot;0&quot;)</tw-passagedata><tw-passagedata pid="2" name="Looks1" tags="" position="603,591" size="100,100">You look around and you appear to be in a cell. The cell is about 2,5 m/8,2 feet across.
+(set: $eggs to 0)
+(set: $maxhp to 6)
+(set: $hp to 3)
+(set: $spelldmg to 1)
+(set: $spelldmg2 to 3)
+(set: $dmg to 1)
+(set: $dmg2 to 3)
+(set: $def to 0)
+(set: $mp to 0)
+(set: $modifier1 to &quot;0&quot;)
+(set: $hp1 to 0)
+(set: $maxhp1 to 0)</tw-passagedata><tw-passagedata pid="2" name="Looks1" tags="" position="602,590" size="100,100">You look around and you appear to be in a cell. The cell is about 2,5 m/8,2 feet across.
 The cell is dirty, walls are covered with blood like substance and that makes you a little scared. Theres also a bed like thing where you woke up on, also theres a cabinet and a locked door.
 
 &quot;This is a small cell&quot;
@@ -91,7 +96,7 @@ What should I do?
 [[examine walls]] or [[examine bed]] 
 
 
-[[Alpha Build v.12|Dev corner]]</tw-passagedata><tw-passagedata pid="4" name="examine walls" tags="" position="475,731" size="100,100">First thing: There&#39;s 4 walls.
+[[Alpha Build v.13|Dev corner]]</tw-passagedata><tw-passagedata pid="4" name="examine walls" tags="" position="475,731" size="100,100">First thing: There&#39;s 4 walls.
 
 You examine the walls and you see that the substance on the walls is not blood but it&#39;s oil?
 
@@ -131,16 +136,16 @@ And you... succeeded cause&#39; ya know it was rotten, what a suprise! It also l
 (if: $key is &quot;1&quot;)[ It&#39;s already open and empty.](else:)[]
 
 What do I do?
-[[Back?|examine cabinet]] </tw-passagedata><tw-passagedata pid="8" name="hidden door" tags="" position="346,732" size="100,100">You try to exmane the hidden door.
+[[Back?|examine cabinet]] </tw-passagedata><tw-passagedata pid="8" name="hidden door" tags="" position="344,732" size="100,100">You try to exmane the hidden door.
 
-But the only thing what you saw was the code &quot;3512&quot; through the door&#39;s glass part or where it was atleast cause&#39; there was none. Now it seems that the door is stuck.
+But the only thing what you saw was the code &quot;$code&quot; through the door&#39;s glass part or where it was atleast cause&#39; there was none. Now it seems that the door is stuck.
 
 &quot;No way I&#39;m gonna open that, also If I leave this zone I feel like I can&#39;t come back here, so lets remembar the code.&quot; 
 (set: $door to &quot;1&quot;)
 
-[[Back?|examine walls]]</tw-passagedata><tw-passagedata pid="9" name="number lock" tags="" position="724,875" size="100,100">You examine the number lock.
+[[Back?|examine walls]]</tw-passagedata><tw-passagedata pid="9" name="number lock" tags="" position="723,874" size="100,100">You examine the number lock.
 
-The code inserted in number lock is (if: $key is &quot;1&quot;)[ 3512 right now.](else:)[ 0000 right now.]
+The code inserted in number lock is (if: $key is &quot;1&quot;)[ $code right now.](else:)[ 0000 right now.]
 {
  (if: $key is &quot;1&quot;)[ The lock is already open ](else:)[But you can change it and try to. [[open it|Lock opening]]]
 
@@ -157,8 +162,10 @@ What do I do?
 
 What do I do?
 
-[[Cell |Looks1]] or [[Back|examine cabinet]]</tw-passagedata><tw-passagedata pid="11" name="Lock opening" tags="" position="840,872" size="100,100">(set: $code to (prompt: &quot;Your code?&quot;, &quot;&quot;))
-(if: $code is &quot;3512&quot;)[
+[[Cell |Looks1]] or [[Back|examine cabinet]]</tw-passagedata><tw-passagedata pid="11" name="Lock opening" tags="" position="840,872" size="100,100">(set: $code0 to (prompt: &quot;Your code?&quot;, &quot;&quot;)) [(set:$code1 to (num: $code0))]
+
+
+(if: $code1 is $code)[
 The code was correct it opened! And there is [[a key]] inside.
 
 ]
@@ -196,13 +203,15 @@ Jarid001 - Alpha Tester
 TaevaDay - Alpha Tester
 
 What should I do?
-[[examine walls]] or [[examine bed]] </tw-passagedata><tw-passagedata pid="15" name="Dev corner" tags="" position="20,9" size="100,100">Welcome to the dev corner here you can chill and see your stats
+[[examine walls]] or [[examine bed]] </tw-passagedata><tw-passagedata pid="15" name="Dev corner" tags="" position="20,8" size="100,100">Welcome to the dev corner here you can chill and see your stats
 If you have alpha version.
 
 (if: $alpha is $password)[
 
 
 ====QUICK TRAVEL====
+[[dead]] - death room
+
 
 [[Looks1]] - 1st room
 [[Hop]]  - 2nd room
@@ -222,6 +231,8 @@ $spelldmg - $spelldmg2 - Spell Damage scale
 $dmg - $dmg2 - Melee Damage scale
 $def - Defense points
 $mp - Mana points
+
+Coins: $coins
 
 (if: $beta is $password)[
 You are a beta tester
@@ -246,17 +257,22 @@ $inv8 - Accessory
 $inv9 - Accessory
 $inv10 - Accessory
 
+ 
 ====DEBUG STATS====
 
 $name - was your name
-$code - was the code
+$code - was your generated code
 $key - how many keys you had
 
 $door - Door counter to close the fucking door
 $progress - Your progression number
 
-$eggs - 1st Easter Egg
-$eggs1 - 2nd Easter Egg
+$eggs out of 7 Easter Eggs
+
+====DEBUG MENU====
+
+[[dev armory]]
+
 
 
 (if: $beta is $password)[
@@ -273,12 +289,20 @@ $beta - Beta Tester code
 ]
 (else:)[]
 ]
-(else:)[]</tw-passagedata><tw-passagedata pid="16" name="some broken sheets" tags="" position="215,618" size="100,100">You examined some broken sheets and you found [[another broken sheet]]!
+(else:)[]
+
+(if: $inv1 is &quot;Fleshlight&quot;) [(set: $def to $def + 2)] (else:) []
+
+(if: $inv1 is &quot;Dev Shield&quot;) [(set: $def to $def + 90)] (else:) []
+
+(if: $inv2 is &quot;Dildo&quot;)  [(set: $dmg to $dmg + 4)(set: $dmg2 to $dmg2 + 6)] (else:) []
+
+(if: $inv2 is &quot;Dev Knife&quot;)  [(set: $dmg to $dmg + 60)(set: $dmg2 to $dmg2 + 90)] (else:) [] </tw-passagedata><tw-passagedata pid="16" name="some broken sheets" tags="" position="215,618" size="100,100">You examined some broken sheets and you found [[another broken sheet]]!
 
 (set: $set1 to &quot;1&quot;)</tw-passagedata><tw-passagedata pid="17" name="another broken sheet" tags="" position="88,616" size="100,100">You examined some more broken sheets and you found [[even more broken sheets]]!</tw-passagedata><tw-passagedata pid="18" name="even more broken sheets" tags="" position="83,730" size="100,100">You-u.. fo-o.. found a [[clear sheet]]!!!!</tw-passagedata><tw-passagedata pid="19" name="clear sheet" tags="" position="217,728" size="100,100">&quot;This was stupid.&quot;
 
 +1 easter egg! (1#)
-(set: $eggs to &quot;Found&quot;)
+(set: $eggs to $eggs + (either: 1))
 
 [[Back|Looks1]]</tw-passagedata><tw-passagedata pid="20" name="Check Stats" tags="" position="4,128" size="100,100">====CHARACTER STATS====
 
@@ -304,6 +328,8 @@ $inv8 - Accessory
 $inv9 - Accessory
 $inv10 - Accessory
 
+Coins: $coins
+
 (if: $beta is $password)[
 You are a beta tester
 ]
@@ -311,7 +337,15 @@ You are a beta tester
 (if: $alpha is $password)[
 You are a alpha tester
 ]
-(else:)[]</tw-passagedata><tw-passagedata pid="21" name="Start1" tags="" position="602,471" size="100,100">You wake up
+(else:)[]
+
+(if: $inv1 is &quot;Fleshlight&quot;) [(set: $def to $def + 2)] (else:) []
+
+(if: $inv1 is &quot;Dev Shield&quot;) [(set: $def to $def + 90)] (else:) []
+
+(if: $inv2 is &quot;Dildo&quot;)  [(set: $dmg to $dmg + 4)(set: $dmg2 to $dmg2 + 6)] (else:) []
+
+(if: $inv2 is &quot;Dev Knife&quot;)  [(set: $dmg to $dmg + 60)(set: $dmg2 to $dmg2 + 90)] (else:) [] </tw-passagedata><tw-passagedata pid="21" name="Start1" tags="" position="607,477" size="100,100">You wake up
 &quot;My head hurts where the fuck am I?&quot;
 [[Look around|Looks1]]
 
@@ -320,8 +354,15 @@ You are a alpha tester
 Load
 
 
-Alpha Build v.12
+Alpha Build v.13
 
+
+(if: $password is &quot;DevelopterKey&quot;)[
+(set: $developter to 1)
+(set: $password to $alpha)
+
+]
+(else:)[]
 
 (click: &quot;Load&quot;)[
 Which game do you want to upload?
@@ -354,15 +395,15 @@ Which game do you want to upload?
 Load
 (click: &quot;Save&quot;)[
 	(link-replace: &quot;Save in Slot 1&quot;)[{
-		(savegame: &quot;Slot 1&quot;, $password)
+		(savegame: &quot;Slot 1&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 2&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 3&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 ]
@@ -400,25 +441,25 @@ The cell is clean, walls are covered with paint and that makes you a little conf
 &quot;Looks like a bedroom&quot;
 
 What should I do?
-(if: $progress is &quot;1&quot;) [or [[Go to corridor|Corridor]]] (else:) [[[examine walls|examine walls2]]] or [[examine beds|examine bed2]] or [[examine cabinets|examine cabinet2]] 
+(if: $progress is &quot;1&quot;) [[[Go to corridor|Corridor]]] (else:) [[[examine walls|examine walls2]]] or [[examine beds|examine bed2]] or [[examine cabinets|examine cabinet2]] 
 
 [[Check Stats]]
 
-[[Alpha Build v.12|Dev corner]]
+[[Alpha Build v.13|Dev corner]]
 
 Save
 Load
 (click: &quot;Save&quot;)[
 	(link-replace: &quot;Save in Slot 1&quot;)[{
-		(savegame: &quot;Slot 1&quot;, $password)
+		(savegame: &quot;Slot 1&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 2&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 3&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 ]
@@ -508,12 +549,12 @@ Just a standard bed without any speciality
 
 </tw-passagedata><tw-passagedata pid="33" name="1st cabinet" tags="" position="1012,980" size="100,100">You opened 1st cabinet or TaevaGay&#39;s cabinet and you found:
 {
-(if: $inv1 is &quot;fleshlight&quot;)[](else:)[[[7in pink fleshlight|fleshlight]], ]
-(if: $inv2 is &quot;dildo&quot;)[](else:)[[[7in pink dildo|dildo]] and]
-(if: $hp is &quot;6&quot;)[](else:)[[[ 3 cookies|cookies]].]
+(if: $inv1 is &quot;Fleshlight&quot;)[](else:)[7in pink fleshlight,]
+(if: $inv2 is &quot;Dildo&quot;)[](else:)[7in pink dildo and]
+(if: $took is 1)[](else:)[[[ 3 cookies|cookies]].]
 }
-(if: $inv1 is &quot;fleshlight&quot;)[(set: $modifier1 to $modifier1 + &quot;1&quot;)](else:)[]
-(if: $inv2 is &quot;dildo&quot;)[(set: $modifier1 to $modifier1 + &quot;1&quot;)] (else:)[]
+(if: $inv1 is &quot;Fleshlight&quot;)[(set: $modifier1 to $modifier1 + &quot;1&quot;)](else:)[]
+(if: $inv2 is &quot;Dildo&quot;)[(set: $modifier1 to $modifier1 + &quot;1&quot;)] (else:)[]
 (if: $hp is &quot;6&quot;)[(if: $modifier1 is &quot;011&quot;)[There were some items here but now they are gone](else:)[]](else:)[]
 
 
@@ -521,7 +562,9 @@ Just a standard bed without any speciality
 
 [[Back?|Hop]]
 
-(set: $modifier1 to &quot;0&quot;)</tw-passagedata><tw-passagedata pid="34" name="2nd cabinet" tags="" position="1122,981" size="100,100">It&#39;s empty
+
+
+(click: &quot;7in pink dildo&quot;) [(set: $inv2 to &quot;Dildo&quot;)] (click: &quot;7in pink fleshlight&quot;) [(set: $inv1 to &quot;Fleshlight&quot;)]</tw-passagedata><tw-passagedata pid="34" name="2nd cabinet" tags="" position="1122,981" size="100,100">It&#39;s empty
 
 &quot;For fuck&#39;s sake&quot;
 
@@ -537,48 +580,30 @@ Just a standard bed without any speciality
 
 &quot;For fuck&#39;s sake?&quot;
 
-[[Back?|Hop]]</tw-passagedata><tw-passagedata pid="38" name="dildo" tags="" position="1110,1124" size="100,100">You took the maybe used dildo!
-
-+1 dildo added
-(set: $inv2 to &quot;dildo&quot;)
-(set: $dmg to &quot;4&quot;)
-(set: $dmg2 to &quot;6&quot;)
-
-(Increased atk from 1-3 to 4-6!
-
-What do I do?
-
-[[Back|1st cabinet]]</tw-passagedata><tw-passagedata pid="39" name="fleshlight" tags="" position="894,1125" size="100,100">You took the maybe used fleshlight!
-
-+1 fleshlight added
-(set: $inv1 to &quot;fleshlight&quot;)
-(set: $def to &quot;2&quot;)
-
-What do I do?
-
-[[Back|1st cabinet]]</tw-passagedata><tw-passagedata pid="40" name="cookies" tags="" position="1003,1125" size="100,100">You took the only normal cookies!
+[[Back?|Hop]]</tw-passagedata><tw-passagedata pid="38" name="cookies" tags="" position="899,985" size="100,100">You took the only normal cookies!
 
 +3 cookies added
 
 (FULL HP 6/6)
-(set: $hp to &quot;6&quot;)
+(set: $hp to 6)
+(set: $took to 1)
 
 What do I do?
 
-[[Back|1st cabinet]]</tw-passagedata><tw-passagedata pid="41" name="key2" tags="" position="1234,1125" size="100,100">You took the key!
+[[Back|1st cabinet]]</tw-passagedata><tw-passagedata pid="39" name="key2" tags="" position="1234,1125" size="100,100">You took the key!
 
 +1 key added
 (set: $key to &quot;2&quot;)
 
 What do I do?
 
-[[Back? |Hop]]</tw-passagedata><tw-passagedata pid="42" name="is it" tags="" position="1485,1124" size="100,100">Yes it is lmao
+[[Back? |Hop]]</tw-passagedata><tw-passagedata pid="40" name="is it" tags="" position="1485,1124" size="100,100">Yes it is lmao
 
 +1 easter egg! (2#)
-(set: $eggs1 to &quot;Found&quot;)
+(set: $eggs to $eggs + (either: 1))
 
 
-[[Back?|Hop]]</tw-passagedata><tw-passagedata pid="43" name="a door" tags="" position="1471,435" size="100,100">You examine the door and it is really rusty.
+[[Back?|Hop]]</tw-passagedata><tw-passagedata pid="41" name="a door" tags="" position="1471,435" size="100,100">You examine the door and it is really rusty.
 
 &quot; &quot;How nice.&quot; &quot;
 
@@ -590,7 +615,7 @@ Cant open the door yet tho :(
 ]
 
 What should I do?
-[[Back?|Hop]]</tw-passagedata><tw-passagedata pid="44" name="Cell2" tags="" position="1669,319" size="100,100">You get into another cell.
+[[Back?|Hop]]</tw-passagedata><tw-passagedata pid="42" name="Cell2" tags="" position="1669,319" size="100,100">You get into another cell.
 
 You spot a chest in corner of the cell and (if: $karma is &quot;-1&quot;)[ a chair and a comatosed guard](else:)[a sleeping guard on [[a chair]]].
 
@@ -603,15 +628,15 @@ Save
 Load
 (click: &quot;Save&quot;)[
 	(link-replace: &quot;Save in Slot 1&quot;)[{
-		(savegame: &quot;Slot 1&quot;, $password)
+		(savegame: &quot;Slot 1&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 2&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 3&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 ]
@@ -643,15 +668,15 @@ Which game do you want to upload?
 		]
 	]
 	(else:)[Slot 3]
-}]</tw-passagedata><tw-passagedata pid="45" name="Menu" tags="" position="598,349" size="100,100">(if: $password is $alpha)[
-Most Epic RPG Adventure Ever
+}]</tw-passagedata><tw-passagedata pid="43" name="Menu" tags="" position="599,351" size="100,100">(if: $password is $alpha)[
+#Most Epic RPG Adventure Ever
 
 [[Play|Start1]]
 Load 
 [[Options|Options]]
 [[Dev corner]]
 
-Alpha Build v.12
+Alpha Build v.13
 
 Alpha Tester Version
 
@@ -688,13 +713,13 @@ Which game do you want to upload?
 		]
 	]
 	(else:)[Slot 3]
-}]</tw-passagedata><tw-passagedata pid="46" name="Options" tags="" position="485,511" size="100,100">Most Epic RPG Adventure Ever
+}]</tw-passagedata><tw-passagedata pid="44" name="Options" tags="" position="485,511" size="100,100">Most Epic RPG Adventure Ever
 
 There is no options, lmao.
 
 [[Dev corner]] 
 
-[[Menu]] (Alpha) or [[Menu1]] (Beta)</tw-passagedata><tw-passagedata pid="47" name="Menu1" tags="" position="476,380" size="100,100">(if: $password is $beta)[
+[[Menu]] (Alpha) or [[Menu1]] (Beta)</tw-passagedata><tw-passagedata pid="45" name="Menu1" tags="" position="476,380" size="100,100">(if: $password is $beta)[
 Most Epic RPG Adventure Ever
 
 [[Play|Start1]]
@@ -702,7 +727,7 @@ Load
 [[Options|Options]]
 [[Dev corner]]
 
-Alpha Build v.12
+Alpha Build v.13
 
 Beta Tester Version
 ]
@@ -738,14 +763,14 @@ Which game do you want to upload?
 		]
 	]
 	(else:)[Slot 3]
-}]</tw-passagedata><tw-passagedata pid="48" name="Menu2" tags="" position="724,385" size="100,100">
+}]</tw-passagedata><tw-passagedata pid="46" name="Menu2" tags="" position="724,385" size="100,100">
 Most Epic RPG Adventure Ever
 
 [[Play|Start1]]
 Load 
 
 
-Alpha Build v.12
+Alpha Build v.13
 
 Standard Version
 
@@ -778,16 +803,16 @@ Which game do you want to upload?
 		]
 	]
 	(else:)[Slot 3]
-}]</tw-passagedata><tw-passagedata pid="49" name="examine door" tags="" position="715,602" size="100,100">You examine the locked door.
+}]</tw-passagedata><tw-passagedata pid="47" name="examine door" tags="" position="715,602" size="100,100">You examine the locked door.
 
 It&#39;s heavily locked (with chaines and welded iron bars.)
 And now if I think about it, wouldn&#39;t it be funny if it was a [[sliding door]]?
 
 What should I do?
-[[Back?|Looks1]] </tw-passagedata><tw-passagedata pid="50" name="sliding door" tags="" position="844,736" size="100,100">Nope can&#39;t get my grip on...
+[[Back?|Looks1]] </tw-passagedata><tw-passagedata pid="48" name="sliding door" tags="" position="844,736" size="100,100">Nope can&#39;t get my grip on...
 
 What should I do?
-[[Back?|Looks1]] </tw-passagedata><tw-passagedata pid="51" name="a chair" tags="" position="1596,485" size="100,100">You take the chair forcefully away from guard&#39;s ass making the guard fall and going into coma, dying eventually but not soon.
+[[Back?|Looks1]] </tw-passagedata><tw-passagedata pid="49" name="a chair" tags="" position="1596,485" size="100,100">You take the chair forcefully away from guard&#39;s ass making the guard fall and going into coma, dying eventually but not soon.
 
 -1 karma
 (set: $karma to &quot;-1&quot;)
@@ -797,7 +822,7 @@ Oh lmao a key also
 +1 key
 (set: $key to &quot;3&quot;)
 
-[[Back?|Cell2]]</tw-passagedata><tw-passagedata pid="52" name="kill" tags="" position="1589,601" size="100,100">The fuck do you espect you will kill him?
+[[Back?|Cell2]]</tw-passagedata><tw-passagedata pid="50" name="kill" tags="" position="1589,601" size="100,100">The fuck do you espect you will kill him?
 
 With the fucking dildo?
 
@@ -808,16 +833,16 @@ Also it&#39;s used...
 Why the fuck did you pick it up...
 
 (set: $retard is &quot;1&quot;)
-[[Back?|Cell2]]</tw-passagedata><tw-passagedata pid="53" name="Chest" tags="" position="1827,482" size="100,100">You examine the chest.
+[[Back?|Cell2]]</tw-passagedata><tw-passagedata pid="51" name="Chest" tags="" position="1827,481" size="100,100">You examine the chest.
 
 It&#39;s pretty fucking heavy. So you can&#39;t just pick it up and then throw it until it breaks. But [[what if]]?
 
 
 (if: $key is &quot;3&quot;)[Try to unlock the chest with [[the key]].](else:)[The chest is still locked.]
 
-[[Back?|Cell2]]</tw-passagedata><tw-passagedata pid="54" name="what if" tags="" position="1895,301" size="100,100">Ah fuck that this shit is like 200 kg.
+[[Back?|Cell2]]</tw-passagedata><tw-passagedata pid="52" name="what if" tags="" position="1895,301" size="100,100">Ah fuck that this shit is like 200 kg.
 
-[[Chest]]</tw-passagedata><tw-passagedata pid="55" name="the key" tags="" position="1827,587" size="100,100">There&#39;s a note inside of the chest.
+[[Chest]]</tw-passagedata><tw-passagedata pid="53" name="the key" tags="" position="1815,586" size="100,100">There&#39;s a note inside of the chest.
 
 &quot;&quot;&quot;
 It seems you have actully stepped right into my trap.
@@ -825,7 +850,7 @@ If I would&#39;we died and I have probably now. So yeah your gonna
 probably die soon. So have fun...
 &quot;&quot;&quot;
 
-[[I&#39;m fucked, I&#39;m fucked|Cell3]]</tw-passagedata><tw-passagedata pid="56" name="Cell3" tags="" position="1653,175" size="100,100">Im so fucked...
+[[I&#39;m fucked, I&#39;m fucked|Cell3]]</tw-passagedata><tw-passagedata pid="54" name="Cell3" tags="" position="1653,175" size="100,100">Im so fucked...
 
 &quot;Fuck, fuck, fuck&quot;
 
@@ -838,15 +863,15 @@ Save
 Load
 (click: &quot;Save&quot;)[
 	(link-replace: &quot;Save in Slot 1&quot;)[{
-		(savegame: &quot;Slot 1&quot;, $password)
+		(savegame: &quot;Slot 1&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 2&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 3&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 ]
@@ -878,35 +903,37 @@ Which game do you want to upload?
 		]
 	]
 	(else:)[Slot 3]
-}]</tw-passagedata><tw-passagedata pid="57" name="walls1" tags="" position="1547,313" size="100,100">FUCK IM WASTING TIME THERE&#39;S NOTHING HERE...
+}]</tw-passagedata><tw-passagedata pid="55" name="walls1" tags="" position="1547,313" size="100,100">FUCK IM WASTING TIME THERE&#39;S NOTHING HERE...
 
 IM SO DEAD!...
 
-[[I&#39;m fucked, I&#39;m fucked|Cell3]]</tw-passagedata><tw-passagedata pid="58" name="roof1" tags="" position="1795,157" size="100,100">OH THERES A VENT!
+[[I&#39;m fucked, I&#39;m fucked|Cell3]]</tw-passagedata><tw-passagedata pid="56" name="roof1" tags="" position="1795,157" size="100,100">OH THERES A VENT!
 
-[[THRU THE FUCKING VENT|vent2]]</tw-passagedata><tw-passagedata pid="59" name="vent2" tags="" position="1652,36" size="100,100">You hear a loud BOOM!!! behind you.
+[[THRU THE FUCKING VENT|vent2]]</tw-passagedata><tw-passagedata pid="57" name="vent2" tags="" position="1652,36" size="100,100">You hear a loud BOOM!!! behind you.
 
 -5hp cause you broke the vent&#39;s entrance with your fist.
 
-(set: $hp to &quot;1&quot;)
-
-[[Continue moving thru the vent|vent2a]]
+  (set: $hp to $hp - (either: 5))  
+  (if: $hp &lt; 1)[ You are [[dead]]]
+  (else:) [[[Continue moving thru the vent|vent2a]]
 
 [[Check Stats]]
 
 Save
-Load
+Load]
+
+
 (click: &quot;Save&quot;)[
 	(link-replace: &quot;Save in Slot 1&quot;)[{
-		(savegame: &quot;Slot 1&quot;, $password)
+		(savegame: &quot;Slot 1&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 2&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 3&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 ]
@@ -938,13 +965,13 @@ Which game do you want to upload?
 		]
 	]
 	(else:)[Slot 3]
-}]</tw-passagedata><tw-passagedata pid="60" name="vent2a" tags="" position="1794,41" size="100,100">It&#39;s getting hotter, cause&#39; the heat from explosion is kicking in...
+}]</tw-passagedata><tw-passagedata pid="58" name="vent2a" tags="" position="1794,41" size="100,100">It&#39;s getting hotter, cause&#39; the heat from explosion is kicking in...
 
-[[Continue moving thru the vent|vent2b]]</tw-passagedata><tw-passagedata pid="61" name="vent2b" tags="" position="1933,47" size="100,100">It&#39;s getting even more hotter, cause&#39; the heat from explosion is kicking in..!
+[[Continue moving thru the vent|vent2b]]</tw-passagedata><tw-passagedata pid="59" name="vent2b" tags="" position="1933,47" size="100,100">It&#39;s getting even more hotter, cause&#39; the heat from explosion is kicking in..!
 
-[[Continue moving thru the vent|vent2c]]</tw-passagedata><tw-passagedata pid="62" name="vent2c" tags="" position="2053,43" size="100,100">It&#39;s getting too hot, cause&#39; the heat from explosion is kicking in...
+[[Continue moving thru the vent|vent2c]]</tw-passagedata><tw-passagedata pid="60" name="vent2c" tags="" position="2053,43" size="100,100">It&#39;s getting too hot, cause&#39; the heat from explosion is kicking in...
 
-You see a exit! [[Exit the vent!|Corridor]]</tw-passagedata><tw-passagedata pid="63" name="Corridor" tags="" position="2288,272" size="100,100">This a corridor
+You see a exit! [[Exit the vent!|Corridor]]</tw-passagedata><tw-passagedata pid="61" name="Corridor" tags="" position="2089,244" size="100,100">This a corridor
 
 Theres alot of differnet doors
 
@@ -953,25 +980,37 @@ Theres alot of differnet doors
 What should I do?
 [[Cell 1|Looks1]]
 [[Cell 2|Hop]]
+{
+(if: $developter is 1)
+[[[Deathless Dev dummy|dev dummy]]] 
+(else:)[]
 
+(if: $password is $alpha)
+[[[Deathless Dev dummy|dev dummy]]]
+(else:)[]
+}
 [[Check Stats]]
 
 Save
 Load
 
-[[Alpha Build v.12|Dev corner]]
+[[Alpha Build v.13|Dev corner]]
+
+(if: $hp1 is 0) [(set: $hp1 to 1000000)(set: $maxhp1 to 1000000)]
+(else:)[]
+
 
 (click: &quot;Save&quot;)[
 	(link-replace: &quot;Save in Slot 1&quot;)[{
-		(savegame: &quot;Slot 1&quot;, $password)
+		(savegame: &quot;Slot 1&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 2&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 	(link-replace: &quot;Save in Slot 3&quot;)[{
-		(savegame: &quot;Slot 2&quot;, $password)
+		(savegame: &quot;Slot 2&quot;, $name)
 		You saved the game
 	}]
 ]
@@ -1003,7 +1042,132 @@ Which game do you want to upload?
 		]
 	]
 	(else:)[Slot 3]
-}]</tw-passagedata></tw-storydata>
+}]
+
+(if: $inv1 is &quot;Fleshlight&quot;) [(set: $def to $def + 2)] (else:) []
+
+(if: $inv1 is &quot;Dev Shield&quot;) [(set: $def to $def + 90)] (else:) []
+
+(if: $inv2 is &quot;Dildo&quot;)  [(set: $dmg to $dmg + 4)(set: $dmg2 to $dmg2 + 6)] (else:) []
+
+(if: $inv2 is &quot;Dev Knife&quot;)  [(set: $dmg to $dmg + 60)(set: $dmg2 to $dmg2 + 90)] (else:) [] </tw-passagedata><tw-passagedata pid="62" name="dead" tags="" position="14,370" size="100,100">You have died and if you don&#39;t have a savefile then your fucked.
+
+
+Load
+
+If you dont have the load file then press f5.
+
+[[Alpha Build v.13|Dev corner]]
+
+(click: &quot;Load&quot;)[
+Which game do you want to upload?
+
+(set: _saves to (saved-games:))\
+{
+	(if: _saves contains &quot;Slot 1&quot;)[
+		(link: (_saves&#39;s &quot;Slot 1&quot;))[
+			(loadgame: &quot;Slot 1&quot;)
+		]
+	]
+	(else:)[Slot 1]
+}
+{
+	(if: _saves contains &quot;Slot 2&quot;)[
+		(link: (_saves&#39;s &quot;Slot 2&quot;))[
+			(loadgame: &quot;Slot 2&quot;)
+		]
+	]
+	(else:)[Slot 2]
+}
+{
+	(if: _saves contains &quot;Slot 3&quot;)[
+		(link: (_saves&#39;s &quot;Slot 3&quot;))[
+			(loadgame: &quot;Slot 3&quot;)
+		]
+	]
+	(else:)[Slot 3]
+}]</tw-passagedata><tw-passagedata pid="63" name="dev dummy" tags="Battle" position="1872,779" size="100,100">[(set:$enemydmg to 0)] 
+[(set:$enemydmg2 to 0)] 
+
+
+#YOU ENCOUNTER A FOE!
+
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░            Name: Nimrod
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     Def: 0  Atk: $enemydmg - $enemydmg2 HP: $hp1 / $maxhp1
+░░░░░░░░░░░░░░░░████████░░░░░
+░░░░░░░░░░░░░░███░░░░░░█░░░░░
+░░░░░░░░░░░░░░█░░░█░█░░█░░░░░		(if: $hp1 &lt; 1)[You have [[won]]!]
+░░░░░░░░░░░░░░█░░░░░░░█░░░░░░		(else:) [(if: $hp &lt; 1)[You are [[dead]]]
+░░░░░░░░░░░░░░████████░░░░░░░		(else:) [
+░░░░░░░░░░░░░░░░░██░░░░░░░░░░
+░░░░░░░░░░░░░░░████████░░░░░░			[[ATTACK]] [[DEFENSE]] [[PRAY]]
+░░░░░░░░░░░░░██░░█░░░░██░░░░░			
+░░░░░░░░░░░░█░░░░█░░░░░██░░░░			
+░░░░░░░░░░░░█░░░░██░░░░░█░░░░     
+░░░░░░░░░░░░█░░░░░█░░░░░██░░░
+░░░░░░░░░░░██░░░░░██░░░░░█░░░		You&#39;r hp: $hp and mana: $mp and defense: $def 
+░░░░░░░░░░░█░░░░░░██░░░░░█░░░		You deal about: $dmg - $dmg2 ammount of damage
+░░░░░░░░░░░█░░░░░███░░░░░██░░        [[Check Stats]] 
+░░░░░░░░░░█░░░░░░█░░██░░░░█░░       
+░░░░░░░░░░░░░░░░██░░░██░░░░░░
+░░░░░░░░░░░░░░░█░░░░░░██░░░░░
+░░░░░░░░░░░░░░██░░░░░░░░█░░░░
+░░░░░░░░░░░░░░█░░░░░░░░░░█░░░
+░░░░░░░░░░░░░░█░░░░░░░░░░░█░░			
+░░░░░░░░░░░░░░█░░░░░░░░░░░░█░			
+░░░░░░░░░░░░░░█░░░░░░░░░░░░░█
+░░░░░░░░░░░░░██░░░░░░░░░░░░░░
+
+
+
+
+
+
+
+]]</tw-passagedata><tw-passagedata pid="64" name="won" tags="" position="1594,755" size="100,100">(set: $chance1 to (either:2,40))
+(set: $coins to $chance1)
+
+You won the battle here, take $chance1 amount coins.
+
+[[Corridor]] </tw-passagedata><tw-passagedata pid="65" name="ATTACK" tags="" position="1644,907" size="100,100">(set: $chance to (either:&quot;heads&quot;,&quot;tails&quot;))
+(set: $chance3 to (either: $dmg, $dmg2))
+(set: $chance4 to (either: $enemydmg, $enemydmg2))
+(if: $chance is &quot;heads&quot;) [(set: $hp1 to $hp1 - $chance3)(set: $hp to $hp - $chance4)[You dealt about $chance3 amount of damage and you took $chance4!]]
+
+(else:) [(set: $hp to $hp - $chance4) [You failed and took $chance4 amount of damage]]
+
+[[Back to the fight!|dev dummy]]</tw-passagedata><tw-passagedata pid="66" name="DEFENSE" tags="" position="1792,904" size="100,100">(set: $chance3 to (either: $dmg, $dmg2))
+(set: $chance5 to $chance3 / 2)
+(set: $chance to (either:&quot;heads&quot;,&quot;tails&quot;))
+(set: $chance1 to (either: $enemydmg, $enemydmg2))
+(set: $chance4 to (either: $enemydmg, $enemydmg2))
+(if: $chance is &quot;heads&quot;) [ (set: $chance1 to $chance1 - $def) (set: $hp to $hp - $chance1) [You defended $def amount of damage but you still got hit with $chance4 damage , your hp is $hp. Also you hit it with $chance5 amount of damage. ] ]
+ 
+ (else:) (set: $hp to $hp - $chance1) [You failed to defend yourself and you got hit with $chance1 amount of damage]
+ 
+[[Back to the fight!|dev dummy]]</tw-passagedata><tw-passagedata pid="67" name="dev armory" tags="" position="134,9" size="100,100">#Armory
+
+==WEAPONS==
+Dildo
+Dev Knife
+
+==SHIELDS==
+Fleshlight
+Dev Shield
+
+[[Dev corner]] 
+
+[[==REFRESH==|dev armory]]
+
+(click: &quot;Dildo&quot;) [(set: $inv2 to &quot;Dildo&quot;)] (click: &quot;Dev Knife&quot;) [(set: $inv2 to &quot;Dev Knife&quot;)] (click: &quot;Fleshlight&quot;) [(set: $inv1 to &quot;Fleshlight&quot;)] (click: &quot;Dev Shield&quot;) [(set: $inv1 to &quot;Dev Shield&quot;)]</tw-passagedata><tw-passagedata pid="68" name="PRAY" tags="" position="1708,1027" size="100,100">(set: $chance to (either:&quot;heads&quot;,&quot;tails&quot;))
+(set: $chance3 to (either: $hp, $maxhp) - 2)
+(set: $chance4 to (either: $enemydmg, $enemydmg2))
+(if: $chance is &quot;heads&quot;) [(set: $hp1 to $hp1 + $chance3)(set: $hp to $hp - $chance4) (if: $maxhp &lt; $hp)[You got $chance3 more hp of $maxhp and you took $chance4! You have $hp hp.]]
+
+(else:) [(set: $hp to $hp - $chance4) [You failed and took $chance4 amount of damage. You have $hp hp.]]
+
+[[Back to the fight!|dev dummy]]</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){i=!0,o=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
